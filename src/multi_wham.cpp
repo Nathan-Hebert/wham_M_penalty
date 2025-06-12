@@ -8,14 +8,13 @@ Type objective_function<Type>::operator() ()
 {
   using namespace density; // necessary to use AR1, SCALE, SEPARABLE
 
-  DATA_VECTOR(M_sigma_prior_sd);
+  DATA_SCALAR(M_sigma_prior_sd);
   
   DATA_INTEGER(n_years_model);
   DATA_IVECTOR(years_use); //years to use for evaluating likelihoods (and simulating values). normally = 0,....,n_years_model-1. used for peels.
   DATA_INTEGER(n_seasons);
   DATA_VECTOR(fracyr_seasons); //length of intervals for seasons
   //int n_seasons = fracyr_seasons.size();
-  DATA_INTEGER(M_sigma_prior_sd);
   DATA_INTEGER(n_regions);
   DATA_INTEGER(n_stocks);
   DATA_INTEGER(n_fleets);
