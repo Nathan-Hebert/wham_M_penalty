@@ -25,7 +25,7 @@ matrix<Type> get_nll_M(array<Type> M_repars, matrix<int> M_re_model, int M_model
 
       // Half-normal prior on σ ~ HalfNormal(0, τ)
       Type tau = 1.0;
-      nll_M(s,r) -= log(2.0) + dnorm(M_repars(s,r,0), Type(0.0), tau, true);  // half-normal density
+      nll_M(s,r) -= log(2.0) + dnorm(sigma_M, Type(0.0), tau, true);  // half-normal density
       nll_M(s,r) -= M_repars(s,r,0);  // Jacobian adjustment: log(dσ/dlog_σ) = log(σ)
       
       // likelihood of M deviations, M_re
