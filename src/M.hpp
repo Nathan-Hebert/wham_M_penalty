@@ -22,6 +22,12 @@ matrix<Type> get_nll_M(array<Type> M_repars, matrix<int> M_re_model, int M_model
       Type rho_M_a = geninvlogit(M_repars(s,r,1),Type(-1),Type(1),Type(1));//using scale =1 ,2 is legacy
       Type rho_M_y = geninvlogit(M_repars(s,r,2),Type(-1),Type(1),Type(1));//using scale =1 ,2 is legacy
       Type Sigma_M;
+
+      // Half-normal prior on σ ~ HalfNormal(0, τ)
+      Type tau = 1.0;
+      jnll -= log(2.0) + dnorm(M_repars(s,r,0), Type(0.0), tau, true);  // half-normal density
+      jnll -= M_repars(s,r,0);  // Jacobian adjustment: log(dσ/dlog_σ) = log(σ)
+      
       // likelihood of M deviations, M_re
       array<Type> M_re_r_s(n_y,n_M_re(s,r));
       M_re_r_s.setZero();
