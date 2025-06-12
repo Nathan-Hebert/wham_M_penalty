@@ -13,6 +13,7 @@ Type objective_function<Type>::operator() ()
   DATA_INTEGER(n_seasons);
   DATA_VECTOR(fracyr_seasons); //length of intervals for seasons
   //int n_seasons = fracyr_seasons.size();
+  DATA_INTEGER(M_sigma_prior_sd);
   DATA_INTEGER(n_regions);
   DATA_INTEGER(n_stocks);
   DATA_INTEGER(n_fleets);
