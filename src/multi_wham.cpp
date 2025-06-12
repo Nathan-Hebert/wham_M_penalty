@@ -7,6 +7,8 @@ template<class Type>
 Type objective_function<Type>::operator() ()
 {
   using namespace density; // necessary to use AR1, SCALE, SEPARABLE
+
+  DATA_VECTOR(M_sigma_prior_sd);
   
   DATA_INTEGER(n_years_model);
   DATA_IVECTOR(years_use); //years to use for evaluating likelihoods (and simulating values). normally = 0,....,n_years_model-1. used for peels.
@@ -592,7 +594,7 @@ Type objective_function<Type>::operator() ()
   /////////////////////////////////////////
   //natural mortality 
   //RE and log_M (possibly updated in time steps)
-  matrix<Type> nll_M = get_nll_M(M_repars, M_re_model, M_model, M_re, n_M_re, years_use);
+  matrix<Type> nll_M = get_nll_M(M_repars, M_re_model, M_model, M_re, n_M_re, years_use, M_sigma_prior_sd);
   nll += nll_M.sum();
   REPORT(nll_M);
   SIMULATE if(do_simulate_M_re){
