@@ -1,5 +1,5 @@
 template<class Type>
-matrix<Type> get_nll_M(array<Type> M_repars, matrix<int> M_re_model, int M_model, array<Type>M_re, matrix<int> n_M_re, vector<int> years_use){
+matrix<Type> get_nll_M(array<Type> M_repars, matrix<int> M_re_model, int M_model, array<Type>M_re, matrix<int> n_M_re, vector<int> years_use, vector<Type>M_sigma_prior_sd){
   /* 
      get nll contribtions for any M random effects
           M_repars: sd and correlation parameters for M random effects
@@ -24,8 +24,7 @@ matrix<Type> get_nll_M(array<Type> M_repars, matrix<int> M_re_model, int M_model
       Type Sigma_M;
 
       // Half-normal prior on σ ~ HalfNormal(0, τ)
-      Type tau = 1.0;
-      nll_M(s,r) -= log(2.0) + dnorm(sigma_M, Type(0.0), tau, true);  // half-normal density
+      nll_M(s,r) -= log(2.0) + dnorm(sigma_M, Type(0.0), M_sigma_prior_sd, true);  // half-normal density
       nll_M(s,r) -= M_repars(s,r,0);  // Jacobian adjustment: log(dσ/dlog_σ) = log(σ)
       
       // likelihood of M deviations, M_re
