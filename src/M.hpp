@@ -1,5 +1,5 @@
 template<class Type>
-matrix<Type> get_nll_M(array<Type> M_repars, matrix<int> M_re_model, int M_model, array<Type>M_re, matrix<int> n_M_re, vector<int> years_use, vector<Type>M_sigma_prior_sd){
+matrix<Type> get_nll_M(array<Type> M_repars, matrix<int> M_re_model, int M_model, array<Type>M_re, matrix<int> n_M_re, vector<int> years_use, Type M_sigma_prior_sd){
   /* 
      get nll contribtions for any M random effects
           M_repars: sd and correlation parameters for M random effects
